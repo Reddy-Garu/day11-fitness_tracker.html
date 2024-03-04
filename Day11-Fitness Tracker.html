@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracker</title>
+    <style>
+        body {
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-attachment: fixed;
+    
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+}
+
+input[type="number"] {
+    padding: 8px;
+    margin-right: 5px;
+}
+
+button {
+    padding: 8px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#progressBar {
+    width: 300px;
+    height: 20px;
+    background-color: #ddd;
+    margin: 20px auto;
+}
+
+#progressBar div {
+    height: 100%;
+    background-color: #007bff;
+}
+
+#stepsCount {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+h1{
+    background: linear-gradient(90deg ,blue,red);
+    background-clip: text;
+    color: transparent;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#glass{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 40%;
+    margin: 10%;
+    box-sizing: border-box;
+    overflow: auto;
+    border-radius: 30px;
+    background-color: rgba(206,203, 203, 0.5);
+    backdrop-filter: blur(0px);
+}
+
+    </style>
+</head>
+<body background="./fitness tracker pic.jpg">
+
+    <div id="glass">
+        <div class="container">
+        <h1>Fitness Tracker</h1>
+        <input type="number" id="stepsInput" placeholder="Enter your steps">
+        <button onclick="addSteps()">Add Steps</button>
+        <div id="progressBar"></div>
+        <div id="stepsCount">Total Steps: 0</div>
+    </div>
+    </div>
+
+    <script >
+        let totalSteps = 0;
+function addSteps() {
+    const stepsInput = document.getElementById('stepsInput');
+    const steps = parseInt(stepsInput.value);
+
+    if (!isNaN(steps) && steps > 0) {
+        totalSteps += steps;
+        updateProgress(totalSteps);
+        updateStepsCount(totalSteps);
+        stepsInput.value = '';
+    } else {
+        alert('Please enter a valid number of steps.');
+    }
+}
+
+function updateProgress(steps) {
+    const progressBar = document.getElementById('progressBar');
+    const progress = (steps / 10000) * 100; // Assuming 10,000 steps is the goal
+    progressBar.innerHTML = `<div style="width: ${progress}%;"></div>`;
+}
+
+function updateStepsCount(steps) {
+    const stepsCount = document.getElementById('stepsCount');
+    stepsCount.textContent = `Total Steps: ${steps}`;
+}
+
+    </script>
+</body>
+</html>
